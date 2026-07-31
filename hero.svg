@@ -1,0 +1,37 @@
+<svg viewBox="0 0 1200 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="10%" r="65%">
+      <stop offset="0%" stop-color="#54C5F8" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#54C5F8" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .wordmark { font-family: 'Arial Black', Arial, Helvetica, sans-serif; font-weight: 900; }
+      .body { font-family: Arial, Helvetica, sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="480" fill="#0E1116"/>
+  <rect width="1200" height="480" fill="url(#glow)"/>
+
+  <!-- eyebrow -->
+  <text x="60" y="68" class="body" font-size="13" font-weight="600" letter-spacing="3" fill="#8B95A1">SOFTWARE ENGINEER</text>
+
+  <!-- status -->
+  <circle cx="1088" cy="63" r="4" fill="#4CD97B">
+    <animate attributeName="opacity" values="1;0.5;1" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <text x="1102" y="68" class="body" font-size="13" font-weight="500" fill="#8B95A1">Building</text>
+
+  <!-- giant wordmark -->
+  <text x="600" y="270" text-anchor="middle" class="wordmark" font-size="168" letter-spacing="-6" fill="#F3F6F9">WALEED</text>
+  <text x="600" y="336" text-anchor="middle" class="wordmark" font-size="46" letter-spacing="10" fill="#54C5F8">QAMAR</text>
+
+  <!-- tagline -->
+  <text x="600" y="410" text-anchor="middle" class="body" font-size="21" font-weight="500" fill="#8B95A1">
+    Flutter engineer building
+    <tspan font-style="italic" fill="#54C5F8">systems worth trusting.</tspan>
+  </text>
+
+  <!-- rule -->
+  <line x1="60" y1="440" x2="1140" y2="440" stroke="#22262C" stroke-width="1"/>
+</svg>
