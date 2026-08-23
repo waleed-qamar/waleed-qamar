@@ -39,9 +39,16 @@ jobs:
 
       - name: Render dashboard
         env:
-          GH_TOKEN: ${{ secrets.DASHBOARD_TOKEN || secrets.GITHUB_TOKEN }}
+          DASHBOARD_TOKEN: ${{ secrets.DASHBOARD_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python3 .github/scripts/generate_dashboard.py \
+          TOKEN="${DASHBOARD_TOKEN:-$GITHUB_TOKEN}"
+          if [ -z "$TOKEN" ]; then
+            echo "::error::No token available. Add DASHBOARD_TOKEN (classic PAT with read:user)."
+            exit 1
+          fi
+
+          GH_TOKEN="$TOKEN" python3 .github/scripts/generate_dashboard.py \
             --user "${{ github.repository_owner }}" \
             --utc-offset 5 \
             --out assets
