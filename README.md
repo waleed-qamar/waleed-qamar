@@ -4,7 +4,6 @@
 
 <div align="center">
   <a href="https://www.linkedin.com/in/me-waleed-qamar/"><img src="https://img.shields.io/badge/LinkedIn-0E1116?style=for-the-badge&logo=linkedin&logoColor=54C5F8" alt="LinkedIn" /></a>
-  <a href="https://pub.dev/publishers"><img src="https://img.shields.io/badge/pub.dev-0E1116?style=for-the-badge&logo=dart&logoColor=54C5F8" alt="pub.dev" /></a>
   <a href="https://instagram.com/me.waleed.qamar"><img src="https://img.shields.io/badge/Instagram-0E1116?style=for-the-badge&logo=instagram&logoColor=54C5F8" alt="Instagram" /></a>
   <a href="mailto:wqamar719@gmail.com"><img src="https://img.shields.io/badge/Email-0E1116?style=for-the-badge&logo=gmail&logoColor=54C5F8" alt="Email" /></a>
 </div>
@@ -86,13 +85,11 @@ Every claim is tiered by evidence and backed by a reproducible sample in a compa
 ## Activity
 
 <div align="center">
-  <img src="./profile-summary-card-output/github_dark/1-repos-per-language.svg" alt="Repos per language" width="49%" />
-  <img src="./profile-summary-card-output/github_dark/2-most-commit-language.svg" alt="Most commit language" width="49%" />
-</div>
-
-<div align="center">
-  <img src="./profile-summary-card-output/github_dark/3-stats.svg" alt="GitHub stats" width="49%" />
-  <img src="./profile-summary-card-output/github_dark/4-productive-time.svg" alt="Productive time" width="49%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)"  srcset="./assets/dashboard-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/dashboard-light.svg" />
+    <img src="./assets/dashboard-dark.svg" alt="GitHub activity dashboard" width="100%" />
+  </picture>
 </div>
 
 <br/>

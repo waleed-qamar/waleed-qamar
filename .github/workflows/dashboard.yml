@@ -1,0 +1,59 @@
+# .github/workflows/dashboard.yml
+#
+# Renders assets/dashboard-{dark,light}.svg from live GitHub data and commits
+# them back to main. The README points at those files, so nothing is fetched
+# from a third-party server when someone views your profile.
+#
+# Requires a secret named DASHBOARD_TOKEN: a classic PAT with `read:user`
+# (add `repo` too if you want private contributions counted).
+# Settings > Secrets and variables > Actions > New repository secret.
+
+name: Activity Dashboard
+
+on:
+  schedule:
+    - cron: "30 18 * * *" # 00:30 PKT daily
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/generate_dashboard.py"
+      - ".github/workflows/dashboard.yml"
+
+concurrency:
+  group: dashboard
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Render dashboard
+        env:
+          GH_TOKEN: ${{ secrets.DASHBOARD_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          python3 .github/scripts/generate_dashboard.py \
+            --user "${{ github.repository_owner }}" \
+            --utc-offset 5 \
+            --out assets
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/dashboard-dark.svg assets/dashboard-light.svg
+          if git diff --staged --quiet; then
+            echo "No change."
+          else
+            git commit -m "chore: refresh activity dashboard [skip ci]"
+            git push
+          fi
