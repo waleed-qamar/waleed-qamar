@@ -68,7 +68,7 @@ W = 1100  # canvas width
 # --------------------------------------------------------------------------
 
 QUERY = """
-query($login: String!, $from: DateTime!, $to: DateTime!) {
+query($login: String!, $from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!) {
   user(login: $login) {
     name
     login
@@ -103,7 +103,7 @@ query($login: String!, $from: DateTime!, $to: DateTime!) {
         defaultBranchRef {
           target {
             ... on Commit {
-              history(first: 100, since: $from) {
+              history(first: 100, since: $gitFrom) {
                 totalCount
                 nodes { committedDate }
               }
@@ -127,6 +127,7 @@ def graphql(token: str, login: str) -> dict:
                 "login": login,
                 "from": frm.isoformat(),
                 "to": to.isoformat(),
+                "gitFrom": frm.isoformat(),
             },
         }
     ).encode()
